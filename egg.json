@@ -1,0 +1,19 @@
+{
+  "$schema": "https://x.nest.land/eggs@0.3.6/src/schema.json",
+  "name": "nhttp_view",
+  "entry": "./mod.ts",
+  "description": "View template engine for Deno nhttp",
+  "homepage": "https://github.com/nhttp/nhttp_controller",
+  "version": "0.1.0",
+  "files": [
+    "./mod.ts",
+    "LICENSE",
+    "README.md"
+  ],
+  "ignore": [],
+  "checkFormat": false,
+  "checkTests": false,
+  "checkInstallation": false,
+  "check": true,
+  "unlisted": false
+}

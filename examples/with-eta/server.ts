@@ -13,8 +13,8 @@ app.use(ViewEngine.custom(eta.renderFile, {
     extname: '.eta',
 }));
 
-app.get("/hello", ({ render }) => {
-    return render('index', {
+app.get("/hello", ({ response }) => {
+    return response.view('index', {
         name: "John", 
         title: "Page Title"
     });

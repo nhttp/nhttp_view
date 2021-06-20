@@ -11,26 +11,26 @@ templating engine for javascript. It is heavily inspired by
 ## Installation
 ### deno.land
 ```ts
-import { ViewEngine } from "https://deno.land/x/nhttp_view@0.1.0/mod.ts";
+import { ViewEngine } from "https://deno.land/x/nhttp_view@0.1.1/mod.ts";
 ```
 
 ### nest.land
 ```ts
-import { ViewEngine } from "https://x.nest.land/nhttp_view@0.1.0/mod.ts";
+import { ViewEngine } from "https://x.nest.land/nhttp_view@0.1.1/mod.ts";
 ```
 
 ## Usage
 ```ts
 // server.ts
-import { NHttp, RequestEvent } from "https://deno.land/x/nhttp@0.2.4/mod.ts";
-import { ViewEngine } from "https://deno.land/x/nhttp_view@0.1.0/mod.ts";
+import { NHttp, RequestEvent } from "https://deno.land/x/nhttp@0.2.5/mod.ts";
+import { ViewEngine } from "https://deno.land/x/nhttp_view@0.1.1/mod.ts";
 
 const app = new NHttp<RequestEvent & ViewEngine>();
 
 app.use(ViewEngine.init());
 
-app.get("/hello", ({ render }) => {
-    return render('index', {
+app.get("/hello", ({ response }) => {
+    return response.view('index', {
         name: "John",
         title: "Page Title"
     });
@@ -73,8 +73,8 @@ app.use(ViewEngine.init({
 ## Custom
 ```js
 import * as dejs from "https://deno.land/x/dejs@0.9.3/mod.ts";
-import { NHttp, RequestEvent } from "https://deno.land/x/nhttp@0.2.4/mod.ts";
-import { ViewEngine } from "https://deno.land/x/nhttp_view@0.1.0/mod.ts";
+import { NHttp, RequestEvent } from "https://deno.land/x/nhttp@0.2.5/mod.ts";
+import { ViewEngine } from "https://deno.land/x/nhttp_view@0.1.1/mod.ts";
 
 const app = new NHttp<RequestEvent & ViewEngine>();
 
@@ -83,8 +83,8 @@ app.use(ViewEngine.custom(dejs.renderFileToString, {
     extname: '.ejs'
 }));
 
-app.get("/hello", ({ render }) => {
-    return render('index', {
+app.get("/hello", ({ response }) => {
+    return response.view('index', {
         name: "John",
         title: "Page Title"
     });

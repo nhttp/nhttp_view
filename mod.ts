@@ -1,4 +1,4 @@
-import { Handler } from "https://deno.land/x/nhttp@0.2.4/src/types.ts";
+import { Handler, HttpResponse } from "https://deno.land/x/nhttp@0.2.5/src/types.ts";
 import nunjucks from "https://deno.land/x/nunjucks@3.2.3/mod.js";
 
 export type TViewOptions = {
@@ -28,13 +28,15 @@ export type TViewOptionsCustom = {
 };
 
 export class ViewEngine {
-  render!: (name: string, params?: Record<string, any>, ...args: any) => any;
+  response!: HttpResponse & {
+    view: (name: string, params?: Record<string, any>, ...args: any) => any;
+  }
   static init(opts: TViewOptions & TViewOptionsCustom = {}): Handler {
     opts.basedir = opts.basedir || "views";
     opts.extname = opts.extname || ".html";
     nunjucks.configure(opts.basedir, opts);
     return (rev, next) => {
-      rev.render = (
+      rev.response.view = (
         name: string,
         params?: Record<string, any>,
       ) => {
@@ -51,7 +53,7 @@ export class ViewEngine {
     opts.basedir = opts.basedir || "";
     opts.extname = opts.extname || ".html";
     return (rev, next) => {
-      rev.render = async (
+      rev.response.view = async (
         name: string,
         params?: Record<string, any>,
         ...args: any

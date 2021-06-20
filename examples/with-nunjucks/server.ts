@@ -5,8 +5,8 @@ const app = new NHttp<RequestEvent & ViewEngine>();
 
 app.use(ViewEngine.init());
 
-app.get("/hello", ({ render }) => {
-    return render('index', {
+app.get("/hello", ({ response }) => {
+    return response.view('index', {
         name: "John",
         title: "Page Title"
     });

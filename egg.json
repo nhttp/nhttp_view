@@ -4,7 +4,7 @@
   "entry": "./mod.ts",
   "description": "View template engine for Deno nhttp",
   "homepage": "https://github.com/nhttp/nhttp_view",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "files": [
     "./mod.ts",
     "LICENSE",
